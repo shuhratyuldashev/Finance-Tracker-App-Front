@@ -1,0 +1,19 @@
+{
+  "language": "Ру",
+  "login": {
+    "title": "Вход",
+    "description": "Для входа на сайт используйте вашу почту и пароль, которые были указаны при регистрации на сайте",
+    "login_label": "Логин",
+    "password_label": "Пароль",
+    "button_submit": "Войти",
+    "no_account_part1": "Нету аккаунта? - ",
+    "no_account_part2": "Зарегистрируйтесь"
+  },
+  "dashboard": {
+    "search_placeholder": "Поиск по транзакциям...",
+    "sort_date": "Дата",
+    "sort_amount": "Сумма",
+    "sort_category": "Категория",
+    "add_transaction": "Добавить транзакцию"
+  }
+}

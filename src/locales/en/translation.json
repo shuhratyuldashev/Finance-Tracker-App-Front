@@ -1,0 +1,19 @@
+{
+  "language": "Eng",
+  "login": {
+    "title": "Login",
+    "description": "To enter the site, use your email and password provided during registration.",
+    "login_label": "Login",
+    "password_label": "Password",
+    "button_submit": "Sign In",
+    "no_account_part1": "Don't have an account? - ",
+    "no_account_part2": "Register"
+  },
+  "dashboard": {
+    "search_placeholder": "Search transactions...",
+    "sort_date": "Date",
+    "sort_amount": "Amount",
+    "sort_category": "Category",
+    "add_transaction": "Add Transaction"
+  }
+}
