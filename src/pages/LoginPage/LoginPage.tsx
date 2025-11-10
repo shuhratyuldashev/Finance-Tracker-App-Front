@@ -53,8 +53,8 @@ const LoginPage: React.FC = () => {
               forgotPasswordLink={true}
             />
 
-            <LoginButton onClick={handleSubmit}>
-              {t('login.button_submit')}
+            <LoginButton onClick={() => handleSubmit({} as React.FormEvent)}> 
+                {t('login.button_submit')}
             </LoginButton>
           </form>
 

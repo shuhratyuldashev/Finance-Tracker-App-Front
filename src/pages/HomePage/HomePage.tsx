@@ -9,10 +9,19 @@ interface FinanceTrackerPageProps {
   page: 'dashboard' | 'incomes' | 'expenses';
 }
 
+
+interface Transaction {
+  id: number;
+  date: string;
+  amount: string;
+  category: string;
+  type: 'income' | 'expense';
+}
+
 const FinanceTrackerPage = ({ page }: FinanceTrackerPageProps) => {
   // УДАЛЕНО: const [darkMode, setDarkMode] = useState(false);
 
-  const transactions = [
+  const transactions: Transaction[] = [
     { id: 1, date: '01.11.2025', amount: '+100$', category: 'Category 1', type: 'income' },
     { id: 2, date: '01.11.2025', amount: '-100$', category: 'Category 1', type: 'expense' },
     { id: 3, date: '01.11.2025', amount: '-100$', category: 'Category 1', type: 'expense' },
