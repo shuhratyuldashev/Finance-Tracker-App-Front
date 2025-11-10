@@ -1,5 +1,4 @@
-import React from 'react';
-import { ChevronLeft, ChevronRight, Moon, Sun } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import LanguageSelect from '../LanguageSelect';
 import DateNavigator from './DateNavigator';

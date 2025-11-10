@@ -1,6 +1,5 @@
 import React from 'react';
-import { MoreHorizontal, Pen, Trash } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import {  Pen, Trash } from 'lucide-react';
 
 interface Transaction {
   id: number;

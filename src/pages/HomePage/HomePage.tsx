@@ -1,4 +1,3 @@
-import React from 'react'; // Убран useState
 import Header from '../../components/Dashboard/Header';
 import Charts from '../../components/Dashboard/Charts';
 import SortButtons from '../../components/Dashboard/SortButtons';
