@@ -168,7 +168,7 @@ const ProfileSettings = () => {
               </p>
             </div>
             <div className="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-100 text-blue-500 dark:bg-gray-900/50 dark:text-blue-400 transition-colors">
-              {language}
+              <LanguageSelect />
             </div>
           </div>
         </div>
