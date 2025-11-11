@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Moon, Sun, Copy, Edit2, Palette, Languages } from 'lucide-react';
 import Sidebar from '../../components/Dashboard/Sidebar';
 import { useTheme } from '../../context/ThemeContext';
 import LanguageSelect from '../../components/LanguageSelect';
 
 const ProfileSettings = () => {
-  const [language, setLanguage] = useState('Ру');
 
   const { darkMode, toggleDarkMode } = useTheme(); 
   
