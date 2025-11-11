@@ -31,7 +31,7 @@ const FinanceTrackerPage = ({ page }: FinanceTrackerPageProps) => {
   ];
 
  return (
-    <div className={`flex h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white`}>
+    <div className='flex h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white'>
       <Sidebar />
       
       <div className="flex-1 overflow-auto p-4 lg:p-8">
