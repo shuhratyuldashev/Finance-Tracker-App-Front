@@ -15,5 +15,21 @@
     "sort_amount": "Сумма",
     "sort_category": "Категория",
     "add_transaction": "Добавить транзакцию"
+  },
+  "register": {
+    "title": "Регистрация",
+    "description": "Создайте новый аккаунт, чтобы начать отслеживать свои финансы",
+    "username_label": "Имя пользователя",
+    "email_label": "Электронная почта",
+    "password_label": "Пароль",
+    "confirm_password_label": "Подтвердите пароль",
+    "button_submit": "Зарегистрироваться",
+    "have_account_part1": "Уже есть аккаунт? - ",
+    "have_account_part2": "Войдите"
+  },
+  "sidebar": {
+    "home": "Главная",
+    "incomes": "Доходы",
+    "expenses": "Расходы"
   }
 }

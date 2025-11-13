@@ -15,5 +15,21 @@
     "sort_amount": "Amount",
     "sort_category": "Category",
     "add_transaction": "Add Transaction"
+  },
+  "register": {
+    "title": "Register",
+    "description": "Create a new account to start tracking your finances.",
+    "username_label": "Username",
+    "email_label": "Email",
+    "password_label": "Password",
+    "confirm_password_label": "Confirm Password",
+    "button_submit": "Sign Up",
+    "have_account_part1": "Already have an account? - ",
+    "have_account_part2": "Login"
+  },
+  "sidebar": {
+    "home": "Home",
+    "incomes": "Incomes",
+    "expenses": "Expenses"
   }
 }

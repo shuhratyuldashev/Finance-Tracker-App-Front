@@ -1,10 +1,12 @@
 import React from 'react';
 import { Home, TrendingUp, TrendingDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Sidebar: React.FC = () => {
   const location = useLocation(); 
   const currentPath = location.pathname; 
+  const { t } = useTranslation();
 
   // --- Функция для кнопок навигации (без изменений) ---
   const getButtonClasses = (path: string) => {
@@ -67,21 +69,21 @@ const Sidebar: React.FC = () => {
         <Link className='w-full flex items-center' to="/">
           <button className={getButtonClasses("/")}>
               <Home size={20} />
-              <span className='hidden lg:block ml-3'>Домашняя</span>
+              <span className='hidden lg:block ml-3'>{t("sidebar.home")}</span>
           </button>
         </Link>
         
         <Link className='w-full flex items-center' to="/incomes">
           <button className={getButtonClasses("/incomes")}>
               <TrendingUp size={20} />
-              <span className='hidden lg:block ml-3'>Доходы</span>
+              <span className='hidden lg:block ml-3'><span className='hidden lg:block ml-3'>{t("sidebar.incomes")}</span></span>
           </button>
         </Link>
         
         <Link className='w-full flex items-center' to="/expenses">
           <button className={getButtonClasses("/expenses")}>
               <TrendingDown size={20} />
-              <span className='hidden lg:block ml-3'>Расходы</span>
+              <span className='hidden lg:block ml-3'><span className='hidden lg:block ml-3'>{t("sidebar.expenses")}</span></span>
           </button>
         </Link>
       </nav>

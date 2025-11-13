@@ -1,5 +1,3 @@
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '../../context/ThemeContext';
 import LanguageSelect from '../LanguageSelect';
 import DateNavigator from './DateNavigator';
 
@@ -9,7 +7,6 @@ interface HeaderProps {
 
 
 const Header = ({ page }: HeaderProps) => {
-  const { darkMode, toggleDarkMode } = useTheme(); 
 
   return (
     <div className={`lg:flex flex-col items-center gap-3 justify-between mb-8`}>
@@ -54,12 +51,6 @@ const Header = ({ page }: HeaderProps) => {
     {/* Группа 3: Кнопки (ml-auto теперь работает корректно) */}
     <div className="hidden lg:flex items-center ml-auto space-x-4">
         <LanguageSelect />
-        <button
-            onClick={toggleDarkMode}
-            className={`p-3 rounded-lg bg-gray-100 dark:bg-gray-700`}
-        >
-            {darkMode ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-gray-500" />}
-        </button>
     </div>
 </div>
     </div>
