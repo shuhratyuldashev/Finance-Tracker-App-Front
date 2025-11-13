@@ -14,7 +14,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, footer })
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 rounded-2xl w-full max-w-md mx-4 animate-fadeIn">
+      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-2xl w-full max-w-md mx-4 animate-fadeIn">
         {/* Header */}
         <div className="flex items-center justify-between p-4">
           <h2 className="text-lg font-semibold">{title}</h2>

@@ -158,54 +158,54 @@ export const useTransactionModals = () => {
   const ViewModal = () => (
     <Modal open={modalType === "view"} onClose={closeModal} title="Информация о транзакции">
       <div className="space-y-4">
-  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-    <div className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full">
-      <Hash className="w-5 h-5 text-blue-600" />
+  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+    <div className="flex items-center justify-center w-10 h-10 bg-blue-100 dark:bg-blue-600 rounded-full">
+      <Hash className="w-5 h-5 text-blue-600 dark:text-blue-100" />
     </div>
     <div>
       <p className="text-xs text-gray-500">ID транзакции</p>
-      <p className="font-semibold text-gray-900">{selectedTransaction?.id}</p>
+      <p className="font-semibold text-gray-900 dark:text-white">{selectedTransaction?.id}</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-    <div className="flex items-center justify-center w-10 h-10 bg-purple-100 rounded-full">
-      <Calendar className="w-5 h-5 text-purple-600" />
+  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+    <div className="flex items-center justify-center w-10 h-10 bg-purple-100 dark:bg-purple-600 rounded-full">
+      <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-50" />
     </div>
     <div>
       <p className="text-xs text-gray-500">Дата</p>
-      <p className="font-semibold text-gray-900">{selectedTransaction?.date}</p>
+      <p className="font-semibold text-gray-900 dark:text-white">{selectedTransaction?.date}</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-    <div className="flex items-center justify-center w-10 h-10 bg-green-100 rounded-full">
-      <DollarSign className="w-5 h-5 text-green-600" />
+  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+    <div className="flex items-center justify-center w-10 h-10 bg-green-100 dark:bg-green-600  rounded-full">
+      <DollarSign className="w-5 h-5 text-green-600 dark:text-green-50 " />
     </div>
     <div>
       <p className="text-xs text-gray-500">Сумма</p>
-      <p className="font-semibold text-gray-900">{selectedTransaction?.amount}</p>
+      <p className="font-semibold text-gray-900 dark:text-white">{selectedTransaction?.amount}</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-    <div className="flex items-center justify-center w-10 h-10 bg-orange-100 rounded-full">
-      <Tag className="w-5 h-5 text-orange-600" />
+  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+    <div className="flex items-center justify-center w-10 h-10 bg-orange-100 dark:bg-orange-600 rounded-full">
+      <Tag className="w-5 h-5 text-orange-600 dark:text-orange-50 " />
     </div>
     <div>
       <p className="text-xs text-gray-500">Категория</p>
-      <p className="font-semibold text-gray-900">{selectedTransaction?.category}</p>
+      <p className="font-semibold text-gray-900 dark:text-white">{selectedTransaction?.category}</p>
     </div>
   </div>
 
-  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
     <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
-      selectedTransaction?.type === "income" ? "bg-emerald-100" : "bg-red-100"
+      selectedTransaction?.type === "income" ? "bg-emerald-100 dark:bg-emerald-600" : "bg-red-100 dark:bg-red-600"
     }`}>
       {selectedTransaction?.type === "income" ? (
-        <TrendingUp className="w-5 h-5 text-emerald-600" />
+        <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-green-50" />
       ) : (
-        <TrendingDown className="w-5 h-5 text-red-600" />
+        <TrendingDown className="w-5 h-5 text-red-600 dark:text-red-50" />
       )}
     </div>
     <div>
