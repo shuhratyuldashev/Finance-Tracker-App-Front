@@ -1,30 +1,37 @@
-import { useEffect } from 'react';
-import { Edit2, Languages, Save } from 'lucide-react';
-import Sidebar from '../../components/Dashboard/Sidebar';
-import { useTheme } from '../../context/ThemeContext';
-import LanguageSelect from '../../components/LanguageSelect';
-import { useUserAccountModals } from '../../components/User/UserAccountModals';
+import { useEffect } from "react";
+import { Edit2, Languages, Save } from "lucide-react";
+import Sidebar from "../../components/Dashboard/Sidebar";
+import { useTheme } from "../../context/ThemeContext";
+import LanguageSelect from "../../components/LanguageSelect";
+import { useUserAccountModals } from "../../components/User/UserAccountModals";
 const ProfileSettings = () => {
-  const { darkMode } = useTheme(); 
-  const { openModal, ChangeEmailModal, ChangePasswordModal, LogoutConfirmModal } = useUserAccountModals();
+  const { darkMode } = useTheme();
+  const {
+    openModal,
+    ChangeEmailModal,
+    ChangePasswordModal,
+    LogoutConfirmModal,
+  } = useUserAccountModals();
 
   useEffect(() => {
-    const mainContainer = document.getElementById('profile-settings-main');
+    const mainContainer = document.getElementById("profile-settings-main");
     if (mainContainer) {
       if (darkMode) {
-        mainContainer.classList.add('dark');
+        mainContainer.classList.add("dark");
       } else {
-        mainContainer.classList.remove('dark');
+        mainContainer.classList.remove("dark");
       }
     }
   }, [darkMode]);
 
   return (
-    <div className='flex h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white'>
+    <div className="flex h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white">
       <Sidebar />
-      <div id="profile-settings-main" className="flex-1 overflow-auto p-4 lg:p-8 transition-colors duration-300 bg-gray-50 dark:bg-gray-900">
+      <div
+        id="profile-settings-main"
+        className="flex-1 overflow-auto p-4 lg:p-8 transition-colors duration-300 bg-gray-50 dark:bg-gray-900"
+      >
         <div className="max-w-4xl mx-auto px-4 py-6 md:px-6 md:py-8">
-          
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white">
@@ -70,13 +77,34 @@ const ProfileSettings = () => {
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Аккаунт
             </h3>
-            
+
             {/* Email */}
             <div className="flex items-start gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
               <div className="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-900/30">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-blue-500">
-                  <rect x="2" y="4" width="20" height="16" rx="2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  className="text-blue-500"
+                >
+                  <rect
+                    x="2"
+                    y="4"
+                    width="20"
+                    height="16"
+                    rx="2"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
               <div className="flex-1">
@@ -84,10 +112,11 @@ const ProfileSettings = () => {
                   Почта
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Ваша учетная запись к адресу <span className="text-blue-500">JohnDoe82@gmail.com</span>
+                  Ваша учетная запись к адресу{" "}
+                  <span className="text-blue-500">JohnDoe82@gmail.com</span>
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => openModal("email")}
                 className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
@@ -98,9 +127,21 @@ const ProfileSettings = () => {
             {/* Password */}
             <div className="flex items-start gap-4">
               <div className="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-900/30">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-blue-500">
-                  <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  className="text-blue-500"
+                >
+                  <path
+                    d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
                 </svg>
               </div>
               <div className="flex-1">
@@ -108,10 +149,12 @@ const ProfileSettings = () => {
                   Пароль
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Пароль — ключ к вашей учетной записи. Никому его не сообщайте. При необходимости вы можете изменить его здесь для повышения безопасности.
+                  Пароль — ключ к вашей учетной записи. Никому его не сообщайте.
+                  При необходимости вы можете изменить его здесь для повышения
+                  безопасности.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => openModal("password")}
                 className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
@@ -150,7 +193,7 @@ const ProfileSettings = () => {
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
               Действия
             </h3>
-            
+
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
                 <h4 className="font-medium mb-1 text-gray-900 dark:text-white">
@@ -160,7 +203,7 @@ const ProfileSettings = () => {
                   Завершите сеанс, чтобы выйти из аккаунта на этом устройстве.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => openModal("logout")}
                 className="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-xl transition-colors w-full md:w-auto"
               >

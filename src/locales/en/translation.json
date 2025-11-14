@@ -31,5 +31,15 @@
     "home": "Home",
     "incomes": "Incomes",
     "expenses": "Expenses"
+  },
+  "charts": {
+    "pie_chart_title": "Spending by Category",
+    "pie_chart_subtitle": "Where do your money go",
+    "income_chart_title": "Income Overview",
+    "income_chart_subtitle": "Monthly Income Trend",
+    "expense_chart_title": "Expense Overview",
+    "expense_chart_subtitle": "Monthly Expense Trend",
+    "compare_chart_title": "Income vs Expense Overview",
+    "compare_chart_subtitle": "Monthly Balance Comparison"
   }
 }

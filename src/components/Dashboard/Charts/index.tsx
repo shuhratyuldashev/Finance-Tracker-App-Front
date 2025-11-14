@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react'; // FIX 1: Removed unused 'React' default import
+import { useState, useMemo } from "react"; // FIX 1: Removed unused 'React' default import
+import { useTranslation } from "react-i18next";
 import {
   AreaChart,
   Area,
@@ -9,7 +10,7 @@ import {
   ResponsiveContainer,
   XAxis,
   YAxis,
-} from 'recharts';
+} from "recharts";
 
 // --- ДАННЫЕ (без изменений) ---
 const monthlyData = [
@@ -112,17 +113,23 @@ const monthlyExpensesData = [
 ];
 
 const pieChartData = [
-  { name: 'Food & Dining', value: 850, color: '#3b82f6', icon: '🍔' },
-  { name: 'Shopping', value: 520, color: '#0ea5e9', icon: '🛍️' },
-  { name: 'Transport', value: 425, color: '#06b6d4', icon: '🚗' },
-  { name: 'Entertainment', value: 675, color: '#8b5cf6', icon: '🎮' },
-  { name: 'Bills & Utilities', value: 950, color: '#ec4899', icon: '💡' },
+  { name: "Food & Dining", value: 850, color: "#3b82f6", icon: "🍔" },
+  { name: "Shopping", value: 520, color: "#0ea5e9", icon: "🛍️" },
+  { name: "Transport", value: 425, color: "#06b6d4", icon: "🚗" },
+  { name: "Entertainment", value: 675, color: "#8b5cf6", icon: "🎮" },
+  { name: "Bills & Utilities", value: 950, color: "#ec4899", icon: "💡" },
 ];
 
 // --- ТУЛТИПЫ И КАСТОМНЫЕ ЭЛЕМЕНТЫ ---
 
 // FIX 2: Added types for 'active' and 'payload'
-const CustomLineTooltip = ({ active, payload }: { active?: boolean; payload?: any[] }) => {
+const CustomLineTooltip = ({
+  active,
+  payload,
+}: {
+  active?: boolean;
+  payload?: any[];
+}) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     const hasIncome = data.income !== undefined;
@@ -160,11 +167,11 @@ const CustomLineTooltip = ({ active, payload }: { active?: boolean; payload?: an
               <span
                 className={`font-bold text-sm ${
                   data.income - data.expense >= 0
-                    ? 'text-green-500'
-                    : 'text-red-500'
+                    ? "text-green-500"
+                    : "text-red-500"
                 }`}
               >
-                {data.income - data.expense >= 0 ? '+' : ''}$
+                {data.income - data.expense >= 0 ? "+" : ""}$
                 {data.income - data.expense}
               </span>
             </div>
@@ -207,48 +214,53 @@ const CustomDot = (props: any) => {
 const ModernCharts = ({
   type,
 }: {
-  type: 'dashboard' | 'incomes' | 'expenses';
+  type: "dashboard" | "incomes" | "expenses";
 }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  
+
   // FIX 5: Added 'percentage' to the state type
-  const [centerLabel, setCenterLabel] = useState<{ name: string; value: string; percentage?: string }>({
-    name: 'Total Spending',
-    value: '3,420',
+  const { t } = useTranslation()
+  const [centerLabel, setCenterLabel] = useState<{
+    name: string;
+    value: string;
+    percentage?: string;
+  }>({
+    name: "Total Spending",
+    value: "3,420",
   });
 
   const chartConfig = useMemo(() => {
     switch (type) {
-      case 'incomes':
+      case "incomes":
         return {
           areaData: monthlyIncomesData,
-          title: 'Income Overview',
-          subTitle: 'Monthly income trend',
+          title: t("charts.income_chart_title"),
+          subTitle: t("charts.income_chart_subtitle"),
           showIncomeArea: true,
           showExpenseArea: false,
           showPieChart: true,
-          areaChartSpan: 'lg:col-span-2',
+          areaChartSpan: "lg:col-span-2",
         };
-      case 'expenses':
+      case "expenses":
         return {
           areaData: monthlyExpensesData,
-          title: 'Expense Overview',
-          subTitle: 'Monthly expense trend',
+          title: t("charts.expense_chart_title"),
+          subTitle: t("charts.expense_chart_subtitle"),
           showIncomeArea: false,
           showExpenseArea: true,
           showPieChart: true,
-          areaChartSpan: 'lg:col-span-2',
+          areaChartSpan: "lg:col-span-2",
         };
-      case 'dashboard':
+      case "dashboard":
       default:
         return {
           areaData: monthlyData,
-          title: 'Income vs Expenses',
-          subTitle: 'Monthly financial overview with trends',
+          title: t("charts.compare_chart_title"),
+          subTitle: t("charts.compare_chart_subtitle"),
           showIncomeArea: true,
           showExpenseArea: true,
           showPieChart: true,
-          areaChartSpan: 'lg:col-span-2',
+          areaChartSpan: "lg:col-span-2",
         };
     }
   }, [type]);
@@ -269,7 +281,10 @@ const ModernCharts = ({
   const onPieLeave = () => {
     setActiveIndex(null);
     const total = pieChartData.reduce((sum, item) => sum + item.value, 0);
-    setCenterLabel({ name: 'Total Spending', value: `$${total.toLocaleString()}` });
+    setCenterLabel({
+      name: "Total Spending",
+      value: `$${total.toLocaleString()}`,
+    });
   };
 
   return (
@@ -303,8 +318,16 @@ const ModernCharts = ({
                         x2="0"
                         y2="1"
                       >
-                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                        <stop
+                          offset="5%"
+                          stopColor="#3b82f6"
+                          stopOpacity={0.3}
+                        />
+                        <stop
+                          offset="95%"
+                          stopColor="#3b82f6"
+                          stopOpacity={0}
+                        />
                       </linearGradient>
                       <linearGradient
                         id="expenseGradient"
@@ -313,27 +336,35 @@ const ModernCharts = ({
                         x2="0"
                         y2="1"
                       >
-                        <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
+                        <stop
+                          offset="5%"
+                          stopColor="#ef4444"
+                          stopOpacity={0.3}
+                        />
+                        <stop
+                          offset="95%"
+                          stopColor="#ef4444"
+                          stopOpacity={0}
+                        />
                       </linearGradient>
                     </defs>
 
                     <XAxis
                       dataKey="day"
                       stroke="#9ca3af"
-                      tick={{ fill: '#9ca3af', fontSize: 12 }}
-                      axisLine={{ stroke: '#e5e7eb' }}
+                      tick={{ fill: "#9ca3af", fontSize: 12 }}
+                      axisLine={{ stroke: "#e5e7eb" }}
                     />
                     <YAxis
                       stroke="#9ca3af"
-                      tick={{ fill: '#9ca3af', fontSize: 12 }}
-                      axisLine={{ stroke: '#e5e7eb' }}
+                      tick={{ fill: "#9ca3af", fontSize: 12 }}
+                      axisLine={{ stroke: "#e5e7eb" }}
                       tickFormatter={(value) => `$${value}`}
                     />
 
                     <Tooltip
                       content={<CustomLineTooltip />}
-                      cursor={{ stroke: '#e5e7eb', strokeWidth: 1 }}
+                      cursor={{ stroke: "#e5e7eb", strokeWidth: 1 }}
                     />
 
                     {chartConfig.showIncomeArea && (
@@ -344,7 +375,7 @@ const ModernCharts = ({
                         strokeWidth={3}
                         fill="url(#incomeGradient)"
                         dot={<CustomDot />}
-                        activeDot={{ r: 8, strokeWidth: 2, stroke: '#fff' }}
+                        activeDot={{ r: 8, strokeWidth: 2, stroke: "#fff" }}
                         animationBegin={0}
                         animationDuration={1500}
                         animationEasing="ease-out"
@@ -358,7 +389,7 @@ const ModernCharts = ({
                         strokeWidth={3}
                         fill="url(#expenseGradient)"
                         dot={<CustomDot />}
-                        activeDot={{ r: 8, strokeWidth: 2, stroke: '#fff' }}
+                        activeDot={{ r: 8, strokeWidth: 2, stroke: "#fff" }}
                         animationBegin={200}
                         animationDuration={1500}
                         animationEasing="ease-out"
@@ -393,10 +424,10 @@ const ModernCharts = ({
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 transition-all duration-300 hover:shadow-2xl">
               <div className="mb-6">
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
-                  Spending by Category
+                  {t("charts.pie_chart_title")}
                 </h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Where your money goes
+                  {t("charts.pie_chart_subtitle")}
                 </p>
               </div>
 
@@ -426,10 +457,10 @@ const ModernCharts = ({
                           style={{
                             filter:
                               activeIndex === index
-                                ? 'brightness(1.1) drop-shadow(0 0 8px currentColor)'
-                                : 'none',
-                            transition: 'all 0.3s ease',
-                            cursor: 'pointer',
+                                ? "brightness(1.1) drop-shadow(0 0 8px currentColor)"
+                                : "none",
+                            transition: "all 0.3s ease",
+                            cursor: "pointer",
                           }}
                         />
                       ))}

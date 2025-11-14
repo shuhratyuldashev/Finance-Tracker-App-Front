@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -6,17 +6,28 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   forgotPasswordLink?: boolean;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ label, id, forgotPasswordLink = false, ...props }) => {
+const InputField: React.FC<InputFieldProps> = ({
+  label,
+  id,
+  forgotPasswordLink = false,
+  ...props
+}) => {
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-1">
         {/* Добавили dark:text-gray-300 */}
-        <label htmlFor={id} className="text-gray-700 dark:text-gray-300 font-semibold text-base">
+        <label
+          htmlFor={id}
+          className="text-gray-700 dark:text-gray-300 font-semibold text-base"
+        >
           {label}
         </label>
         {forgotPasswordLink && (
           // Добавили dark: классы для ссылки
-          <a href="#" className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">
+          <a
+            href="#"
+            className="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium"
+          >
             Забыли пароль?
           </a>
         )}

@@ -1,17 +1,17 @@
 // src/components/LanguageSelect.tsx
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { useTranslation } from 'react-i18next'; // <-- Импорт
+import React, { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next"; // <-- Импорт
 
 const LanguageSelect: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   // Получаем функцию i18n для смены языка и t для переводов
-  const { i18n, t } = useTranslation(); 
-  
+  const { i18n, t } = useTranslation();
+
   // Языки, которые мы хотим отображать
   const options = [
-    { key: 'ru', display: t('language', { lng: 'ru' }) }, // "Ру"
-    { key: 'en', display: t('language', { lng: 'en' }) }, // "Eng"
+    { key: "ru", display: t("language", { lng: "ru" }) }, // "Ру"
+    { key: "en", display: t("language", { lng: "en" }) }, // "Eng"
   ];
 
   const handleSelect = (langKey: string) => {
@@ -28,8 +28,11 @@ const LanguageSelect: React.FC = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-center px-4 py-2 bg-white dark:bg-gray-700 bg-opacity-30 backdrop-blur-sm rounded-full font-bold transition duration-200 hover:bg-opacity-50 focus:outline-none"
       >
-        {t('language')} {/* <-- Отображаем "Ру" или "Eng" в зависимости от текущего языка */}
-        <ChevronDown className={`w-4 h-4 ml-1 transition-transform duration-200 ${isOpen ? 'rotate-180' : 'rotate-0'}`} />
+        {t("language")}{" "}
+        {/* <-- Отображаем "Ру" или "Eng" в зависимости от текущего языка */}
+        <ChevronDown
+          className={`w-4 h-4 ml-1 transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}
+        />
       </button>
 
       {/* Выпадающий список */}
@@ -40,7 +43,7 @@ const LanguageSelect: React.FC = () => {
               key={option.key}
               onClick={() => handleSelect(option.key)}
               className={`w-full text-center py-2 text-sm font-medium transition duration-150
-                ${currentLang === option.key ? 'bg-blue-500 text-white' : 'text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'}
+                ${currentLang === option.key ? "bg-blue-500 text-white" : "text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"}
               `}
             >
               {option.display}

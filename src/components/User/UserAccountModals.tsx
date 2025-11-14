@@ -24,15 +24,18 @@ export const useUserAccountModals = () => {
           >
             Отмена
           </button>
-          <button
-            className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
-          >
+          <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
             Сохранить
           </button>
         </div>
       }
     >
-      <InputField id="newEmail" label="Новая почта" type="email" placeholder="example@email.com" />
+      <InputField
+        id="newEmail"
+        label="Новая почта"
+        type="email"
+        placeholder="example@email.com"
+      />
     </Modal>
   );
 
@@ -49,9 +52,7 @@ export const useUserAccountModals = () => {
           >
             Отмена
           </button>
-          <button
-            className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
-          >
+          <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
             Обновить
           </button>
         </div>
@@ -59,7 +60,11 @@ export const useUserAccountModals = () => {
     >
       <InputField id="oldPassword" label="Старый пароль" type="password" />
       <InputField id="newPassword" label="Новый пароль" type="password" />
-      <InputField id="confirmPassword" label="Подтвердите пароль" type="password" />
+      <InputField
+        id="confirmPassword"
+        label="Подтвердите пароль"
+        type="password"
+      />
     </Modal>
   );
 
@@ -76,9 +81,7 @@ export const useUserAccountModals = () => {
           >
             Отмена
           </button>
-          <button
-            className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition"
-          >
+          <button className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition">
             Выйти
           </button>
         </div>

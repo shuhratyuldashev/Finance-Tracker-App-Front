@@ -20,7 +20,11 @@ const categories = [
   "Investment",
 ];
 
-export const SortFilterPanel = ({ filter }: { filter: ReturnType<typeof useTransactionsFilter> }) => {
+export const SortFilterPanel = ({
+  filter,
+}: {
+  filter: ReturnType<typeof useTransactionsFilter>;
+}) => {
   const {
     sortBy,
     sortOrder,
@@ -35,8 +39,13 @@ export const SortFilterPanel = ({ filter }: { filter: ReturnType<typeof useTrans
   } = filter;
 
   const getSortIcon = (field: string) => {
-    if (sortBy !== field) return <ArrowUpDown size={14} className="opacity-50" />;
-    return sortOrder === "asc" ? <ArrowUp size={14} /> : <ArrowDown size={14} />;
+    if (sortBy !== field)
+      return <ArrowUpDown size={14} className="opacity-50" />;
+    return sortOrder === "asc" ? (
+      <ArrowUp size={14} />
+    ) : (
+      <ArrowDown size={14} />
+    );
   };
 
   return (

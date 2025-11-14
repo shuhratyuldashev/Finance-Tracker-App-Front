@@ -5,26 +5,28 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
-      (function() {
-        var theme = (function() {
+      (function () {
+        var theme = (function () {
           // 1. Проверяем localStorage
-          var storedTheme = localStorage.getItem('theme');
+          var storedTheme = localStorage.getItem("theme");
           if (storedTheme) {
             return storedTheme;
           }
           // 2. Проверяем системные настройки
-          var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          return systemPrefersDark ? 'dark' : 'light';
+          var systemPrefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          return systemPrefersDark ? "dark" : "light";
         })();
-        
+
         // Применяем класс до загрузки React
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
         } else {
-          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove("dark");
         }
         // Сохраняем (на случай, если взяли из системных настроек)
-        localStorage.setItem('theme', theme);
+        localStorage.setItem("theme", theme);
       })();
     </script>
     <title>Finance Tracker</title>

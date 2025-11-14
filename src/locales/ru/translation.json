@@ -31,5 +31,15 @@
     "home": "Главная",
     "incomes": "Доходы",
     "expenses": "Расходы"
+  },
+  "charts": {
+    "pie_chart_title": "Расходы по категориям",
+    "pie_chart_subtitle": "Куда идут ваши деньги",
+    "income_chart_title": "Обзор доходов",
+    "income_chart_subtitle": "Тенденция ежемесячных доходов",
+    "expense_chart_title": "Обзор расходов",
+    "expense_chart_subtitle": "Тенденция ежемесячных расходов",
+    "compare_chart_title": "Обзор доходов и расходов",
+    "compare_chart_subtitle": "Ежемесячное сравнение баланса"
   }
 }

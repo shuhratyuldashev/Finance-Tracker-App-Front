@@ -9,7 +9,13 @@ interface ModalProps {
   footer?: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, footer }) => {
+const Modal: React.FC<ModalProps> = ({
+  open,
+  onClose,
+  title,
+  children,
+  footer,
+}) => {
   if (!open) return null;
 
   return (
@@ -30,11 +36,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, footer })
         <div className="p-4">{children}</div>
 
         {/* Footer */}
-        {footer && (
-          <div className="p-4">
-            {footer}
-          </div>
-        )}
+        {footer && <div className="p-4">{footer}</div>}
       </div>
     </div>
   );

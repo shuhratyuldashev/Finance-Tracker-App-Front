@@ -1,7 +1,14 @@
 import { useState } from "react";
 import Modal from "../Modal";
 import InputField from "../InputField";
-import { Calendar, DollarSign, Hash, Tag, TrendingDown, TrendingUp } from "lucide-react";
+import {
+  Calendar,
+  DollarSign,
+  Hash,
+  Tag,
+  TrendingDown,
+  TrendingUp,
+} from "lucide-react";
 
 const categories = [
   { id: 1, name: "Еда" },
@@ -12,7 +19,9 @@ const categories = [
 
 export const useTransactionModals = () => {
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
-  const [modalType, setModalType] = useState<"create" | "edit" | "delete" | "view" | "category" | null>(null);
+  const [modalType, setModalType] = useState<
+    "create" | "edit" | "delete" | "view" | "category" | null
+  >(null);
 
   const openModal = (type: typeof modalType, transaction?: any) => {
     setModalType(type);
@@ -24,13 +33,18 @@ export const useTransactionModals = () => {
     setSelectedTransaction(null);
   };
 
-  const CreateModal = () => {
+  const CreateModal = ({ funcAdd }: any) => {
     const [type, setType] = useState<"income" | "expense">("income");
-    const [category, setCategory] = useState(categories[0].id);
-    const [amount, setAmount] = useState("");
+    const [category, setCategory] = useState(categories[0].name);
+    const [amount, setAmount] = useState(0);
 
     const handleCreate = async () => {
       console.log("Создать транзакцию:", { type, category, amount });
+      funcAdd({
+        amount,
+        type,
+        category,
+      });
       closeModal();
     };
 
@@ -41,10 +55,16 @@ export const useTransactionModals = () => {
         title="Создать транзакцию"
         footer={
           <div className="flex justify-end space-x-2">
-            <button onClick={closeModal} className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800">
+            <button
+              onClick={closeModal}
+              className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800"
+            >
               Отмена
             </button>
-            <button onClick={handleCreate} className="px-4 py-2 rounded-lg bg-blue-600 text-white">
+            <button
+              onClick={handleCreate}
+              className="px-4 py-2 rounded-lg bg-blue-600 text-white"
+            >
               Сохранить
             </button>
           </div>
@@ -67,11 +87,11 @@ export const useTransactionModals = () => {
             <label className="text-sm font-medium">Категория</label>
             <select
               value={category}
-              onChange={(e) => setCategory(Number(e.target.value))}
+              onChange={(e) => setCategory(e.target.value)}
               className="w-full mt-1 bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2"
             >
               {categories.map((c) => (
-                <option key={c.id} value={c.id}>
+                <option key={c.id} value={c.name}>
                   {c.name}
                 </option>
               ))}
@@ -84,64 +104,76 @@ export const useTransactionModals = () => {
             type="number"
             placeholder="Введите сумму"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => setAmount(Number(e.target.value))}
           />
         </div>
       </Modal>
     );
   };
 
-  const EditModal = () => {
-    const [amount, setAmount] = useState("");
+  const EditModal = ({ onEdit }: any) => {
+    const [amount, setAmount] = useState(0);
 
     const handleEdit = async () => {
       console.log("Создать транзакцию:", { amount });
+      onEdit({ id: selectedTransaction?.id, amount });
       closeModal();
     };
 
-
-    return(
-    <Modal
-      open={modalType === "edit"}
-      onClose={closeModal}
-      title="Редактировать транзакцию"
-      footer={
-        <div className="flex justify-end space-x-2">
-            <button onClick={closeModal} className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800">
+    return (
+      <Modal
+        open={modalType === "edit"}
+        onClose={closeModal}
+        title="Редактировать транзакцию"
+        footer={
+          <div className="flex justify-end space-x-2">
+            <button
+              onClick={closeModal}
+              className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800"
+            >
               Отмена
             </button>
-            <button onClick={handleEdit} className="px-4 py-2 rounded-lg bg-blue-600 text-white">
+            <button
+              onClick={handleEdit}
+              className="px-4 py-2 rounded-lg bg-blue-600 text-white"
+            >
               Сохранить
             </button>
           </div>
-      }
-    >
-       <div className="space-y-4">
+        }
+      >
+        <div className="space-y-4">
           <InputField
             id="amount"
             label="Сумма"
             type="number"
             placeholder="Введите сумму"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            defaultValue={selectedTransaction?.amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
           />
         </div>
-    </Modal>
-  )}
+      </Modal>
+    );
+  };
 
-  const DeleteModal = () => (
+  const DeleteModal = ({ onDelete }: any) => (
     <Modal
       open={modalType === "delete"}
       onClose={closeModal}
       title="Удалить транзакцию"
       footer={
         <div className="flex justify-end space-x-2">
-          <button onClick={closeModal} className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800">
+          <button
+            onClick={closeModal}
+            className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800"
+          >
             Отмена
           </button>
           <button
             onClick={() => {
               console.log("Удалена транзакция", selectedTransaction?.id);
+              onDelete(selectedTransaction?.id);
               closeModal();
             }}
             className="px-4 py-2 rounded-lg bg-red-600 text-white"
@@ -151,76 +183,98 @@ export const useTransactionModals = () => {
         </div>
       }
     >
-      <p>Вы уверены, что хотите удалить транзакцию #{selectedTransaction?.id}?</p>
+      <p>
+        Вы уверены, что хотите удалить транзакцию #{selectedTransaction?.id}?
+      </p>
     </Modal>
   );
 
   const ViewModal = () => (
-    <Modal open={modalType === "view"} onClose={closeModal} title="Информация о транзакции">
+    <Modal
+      open={modalType === "view"}
+      onClose={closeModal}
+      title="Информация о транзакции"
+    >
       <div className="space-y-4">
-  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-    <div className="flex items-center justify-center w-10 h-10 bg-blue-100 dark:bg-blue-600 rounded-full">
-      <Hash className="w-5 h-5 text-blue-600 dark:text-blue-100" />
-    </div>
-    <div>
-      <p className="text-xs text-gray-500">ID транзакции</p>
-      <p className="font-semibold text-gray-900 dark:text-white">{selectedTransaction?.id}</p>
-    </div>
-  </div>
+        <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="flex items-center justify-center w-10 h-10 bg-blue-100 dark:bg-blue-600 rounded-full">
+            <Hash className="w-5 h-5 text-blue-600 dark:text-blue-100" />
+          </div>
+          <div>
+            <p className="text-xs text-gray-500">ID транзакции</p>
+            <p className="font-semibold text-gray-900 dark:text-white">
+              {selectedTransaction?.id}
+            </p>
+          </div>
+        </div>
 
-  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-    <div className="flex items-center justify-center w-10 h-10 bg-purple-100 dark:bg-purple-600 rounded-full">
-      <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-50" />
-    </div>
-    <div>
-      <p className="text-xs text-gray-500">Дата</p>
-      <p className="font-semibold text-gray-900 dark:text-white">{selectedTransaction?.date}</p>
-    </div>
-  </div>
+        <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="flex items-center justify-center w-10 h-10 bg-purple-100 dark:bg-purple-600 rounded-full">
+            <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-50" />
+          </div>
+          <div>
+            <p className="text-xs text-gray-500">Дата</p>
+            <p className="font-semibold text-gray-900 dark:text-white">
+              {selectedTransaction?.date}
+            </p>
+          </div>
+        </div>
 
-  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-    <div className="flex items-center justify-center w-10 h-10 bg-green-100 dark:bg-green-600  rounded-full">
-      <DollarSign className="w-5 h-5 text-green-600 dark:text-green-50 " />
-    </div>
-    <div>
-      <p className="text-xs text-gray-500">Сумма</p>
-      <p className="font-semibold text-gray-900 dark:text-white">{selectedTransaction?.amount}</p>
-    </div>
-  </div>
+        <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="flex items-center justify-center w-10 h-10 bg-green-100 dark:bg-green-600  rounded-full">
+            <DollarSign className="w-5 h-5 text-green-600 dark:text-green-50 " />
+          </div>
+          <div>
+            <p className="text-xs text-gray-500">Сумма</p>
+            <p className="font-semibold text-gray-900 dark:text-white">
+              {selectedTransaction?.amount}
+            </p>
+          </div>
+        </div>
 
-  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-    <div className="flex items-center justify-center w-10 h-10 bg-orange-100 dark:bg-orange-600 rounded-full">
-      <Tag className="w-5 h-5 text-orange-600 dark:text-orange-50 " />
-    </div>
-    <div>
-      <p className="text-xs text-gray-500">Категория</p>
-      <p className="font-semibold text-gray-900 dark:text-white">{selectedTransaction?.category}</p>
-    </div>
-  </div>
+        <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="flex items-center justify-center w-10 h-10 bg-orange-100 dark:bg-orange-600 rounded-full">
+            <Tag className="w-5 h-5 text-orange-600 dark:text-orange-50 " />
+          </div>
+          <div>
+            <p className="text-xs text-gray-500">Категория</p>
+            <p className="font-semibold text-gray-900 dark:text-white">
+              {selectedTransaction?.category}
+            </p>
+          </div>
+        </div>
 
-  <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-    <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
-      selectedTransaction?.type === "income" ? "bg-emerald-100 dark:bg-emerald-600" : "bg-red-100 dark:bg-red-600"
-    }`}>
-      {selectedTransaction?.type === "income" ? (
-        <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-green-50" />
-      ) : (
-        <TrendingDown className="w-5 h-5 text-red-600 dark:text-red-50" />
-      )}
-    </div>
-    <div>
-      <p className="text-xs text-gray-500">Тип</p>
-      <p className={`font-semibold ${
-        selectedTransaction?.type === "income" ? "text-emerald-600" : "text-red-600"
-      }`}>
-        {selectedTransaction?.type === "income" ? "Доход" : "Расход"}
-      </p>
-    </div>
-  </div>
-</div>
+        <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div
+            className={`flex items-center justify-center w-10 h-10 rounded-full ${
+              selectedTransaction?.type === "income"
+                ? "bg-emerald-100 dark:bg-emerald-600"
+                : "bg-red-100 dark:bg-red-600"
+            }`}
+          >
+            {selectedTransaction?.type === "income" ? (
+              <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-green-50" />
+            ) : (
+              <TrendingDown className="w-5 h-5 text-red-600 dark:text-red-50" />
+            )}
+          </div>
+          <div>
+            <p className="text-xs text-gray-500">Тип</p>
+            <p
+              className={`font-semibold ${
+                selectedTransaction?.type === "income"
+                  ? "text-emerald-600"
+                  : "text-red-600"
+              }`}
+            >
+              {selectedTransaction?.type === "income" ? "Доход" : "Расход"}
+            </p>
+          </div>
+        </div>
+      </div>
     </Modal>
   );
- const CategoryModal = () => {
+  const CategoryModal = () => {
     const [name, setName] = useState("");
     const [code, setCode] = useState("");
 
@@ -236,10 +290,16 @@ export const useTransactionModals = () => {
         title="Добавить категорию"
         footer={
           <div className="flex justify-end space-x-2">
-            <button onClick={closeModal} className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800">
+            <button
+              onClick={closeModal}
+              className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-800"
+            >
               Отмена
             </button>
-            <button onClick={handleAddCategory} className="px-4 py-2 rounded-lg bg-blue-600 text-white">
+            <button
+              onClick={handleAddCategory}
+              className="px-4 py-2 rounded-lg bg-blue-600 text-white"
+            >
               Добавить
             </button>
           </div>

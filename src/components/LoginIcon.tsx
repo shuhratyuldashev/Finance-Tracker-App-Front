@@ -1,5 +1,5 @@
-import React from 'react';
-import { LogIn } from 'lucide-react';
+import React from "react";
+import { LogIn } from "lucide-react";
 
 interface LoginButtonProps {
   children: React.ReactNode;

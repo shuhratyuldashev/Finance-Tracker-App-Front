@@ -1,18 +1,13 @@
 import { useState, useMemo } from "react";
-
-export interface Transaction {
-  id: number;
-  date: string;
-  amount: string;
-  category: string;
-  type: "income" | "expense";
-}
+import type { Transaction } from "../types";
 
 export const useTransactionsFilter = (transactions: Transaction[]) => {
   const [sortBy, setSortBy] = useState<"date" | "amount" | "category">("date");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [typeFilter, setTypeFilter] = useState<"all" | "income" | "expense">("all");
+  const [typeFilter, setTypeFilter] = useState<"all" | "income" | "expense">(
+    "all",
+  );
   const [showFilters, setShowFilters] = useState(false);
 
   const handleSort = (field: "date" | "amount" | "category") => {
@@ -28,20 +23,23 @@ export const useTransactionsFilter = (transactions: Transaction[]) => {
     let result = [...transactions];
 
     // Filters
-    if (selectedCategory !== "All") result = result.filter(t => t.category === selectedCategory);
-    if (typeFilter !== "all") result = result.filter(t => t.type === typeFilter);
+    if (selectedCategory !== "All")
+      result = result.filter((t) => t.category === selectedCategory);
+    if (typeFilter !== "all")
+      result = result.filter((t) => t.type === typeFilter);
 
     // Sorting
     result.sort((a, b) => {
       let compareValue = 0;
-      const parseAmount = (amt: string) => parseFloat(amt.replace(/[^0-9.-]/g, ""));
+
 
       switch (sortBy) {
         case "date":
-          compareValue = new Date(a.date).getTime() - new Date(b.date).getTime();
+          compareValue =
+            new Date(a.date).getTime() - new Date(b.date).getTime();
           break;
         case "amount":
-          compareValue = parseAmount(a.amount) - parseAmount(b.amount);
+          compareValue = a.amount - b.amount;
           break;
         case "category":
           compareValue = a.category.localeCompare(b.category);

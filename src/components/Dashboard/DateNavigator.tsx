@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface DateNavigatorProps {
   defaultDate?: Date;
@@ -10,31 +10,58 @@ interface DateNavigatorProps {
 const DateNavigator: React.FC<DateNavigatorProps> = ({
   defaultDate = new Date(),
   onDateChange,
-  locale = 'ru-RU'
+  locale = "ru-RU",
 }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(defaultDate);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const formatMonth = (date: Date): string => {
     const monthNames = {
-      'ru-RU': ['Янв.', 'Фев.', 'Март', 'Апр.', 'Май', 'Июнь', 'Июль', 'Авг.', 'Сент.', 'Окт.', 'Нояб.', 'Дек.'],
-      'en-US': ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
+      "ru-RU": [
+        "Янв.",
+        "Фев.",
+        "Март",
+        "Апр.",
+        "Май",
+        "Июнь",
+        "Июль",
+        "Авг.",
+        "Сент.",
+        "Окт.",
+        "Нояб.",
+        "Дек.",
+      ],
+      "en-US": [
+        "Jan.",
+        "Feb.",
+        "Mar.",
+        "Apr.",
+        "May",
+        "June",
+        "July",
+        "Aug.",
+        "Sept.",
+        "Oct.",
+        "Nov.",
+        "Dec.",
+      ],
     };
 
-    const names = monthNames[locale as keyof typeof monthNames] || monthNames['en-US'];
+    const names =
+      monthNames[locale as keyof typeof monthNames] || monthNames["en-US"];
     return `${names[date.getMonth()]} ${date.getFullYear()}`;
   };
 
-  const navigateMonth = (direction: 'prev' | 'next') => {
+  const navigateMonth = (direction: "prev" | "next") => {
     setIsTransitioning(true);
-    
+
     const newDate = new Date(selectedDate);
-    if (direction === 'prev') {
+    if (direction === "prev") {
       newDate.setMonth(newDate.getMonth() - 1);
     } else {
       newDate.setMonth(newDate.getMonth() + 1);
     }
-    
+
     setSelectedDate(newDate);
     onDateChange?.(newDate);
 
@@ -44,23 +71,23 @@ const DateNavigator: React.FC<DateNavigatorProps> = ({
   return (
     <div className="flex items-center space-x-2">
       <button
-        onClick={() => navigateMonth('prev')}
+        onClick={() => navigateMonth("prev")}
         className="text-gray-400 hover:text-white dark:hover:text-white duration-200 p-1 hover:bg-blue-500 rounded-full transition-colors"
         aria-label="Previous month"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
-      
-      <h1 
+
+      <h1
         className={`text-xl font-semibold text-gray-900 dark:text-gray-100 min-w-[140px] text-center transition-opacity duration-150 ${
-          isTransitioning ? 'opacity-50' : 'opacity-100'
+          isTransitioning ? "opacity-50" : "opacity-100"
         }`}
       >
         {formatMonth(selectedDate)}
       </h1>
-      
+
       <button
-        onClick={() => navigateMonth('next')}
+        onClick={() => navigateMonth("next")}
         className="text-gray-400 hover:text-white dark:hover:text-white duration-200 p-1 hover:bg-blue-500 rounded-full transition-colors"
         aria-label="Next month"
       >
@@ -69,6 +96,5 @@ const DateNavigator: React.FC<DateNavigatorProps> = ({
     </div>
   );
 };
-
 
 export default DateNavigator;
