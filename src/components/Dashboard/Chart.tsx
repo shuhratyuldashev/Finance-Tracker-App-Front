@@ -31,14 +31,14 @@ const Charts: React.FC = () => {
               borderWidth: 3,
               pointRadius: 0,
             },
-            {
-              data: [20, 25, 40, 30, 45, 55, 50],
-              borderColor: '#ef4444',
-              backgroundColor: 'transparent',
-              tension: 0.4,
-              borderWidth: 3,
-              pointRadius: 0,
-            },
+            // {
+            //   data: [20, 25, 40, 30, 45, 55, 50],
+            //   borderColor: '#ef4444',
+            //   backgroundColor: 'transparent',
+            //   tension: 0.4,
+            //   borderWidth: 3,
+            //   pointRadius: 0,
+            // },
           ],
         },
         options: {
