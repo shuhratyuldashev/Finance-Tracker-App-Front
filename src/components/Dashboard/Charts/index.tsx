@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react'; // FIX 1: Removed unused 'React' default import
 import {
   AreaChart,
   Area,
@@ -25,6 +25,24 @@ const monthlyData = [
   { day: 10, income: 530, expense: 350 },
   { day: 11, income: 600, expense: 370 },
   { day: 12, income: 560, expense: 340 },
+  { day: 13, income: 540, expense: 330 },
+  { day: 14, income: 580, expense: 360 },
+  { day: 15, income: 610, expense: 380 },
+  { day: 16, income: 650, expense: 400 },
+  { day: 17, income: 620, expense: 390 },
+  { day: 18, income: 630, expense: 410 },
+  { day: 19, income: 640, expense: 400 },
+  { day: 20, income: 600, expense: 380 },
+  { day: 21, income: 620, expense: 390 },
+  { day: 22, income: 660, expense: 420 },
+  { day: 23, income: 650, expense: 410 },
+  { day: 24, income: 630, expense: 400 },
+  { day: 25, income: 700, expense: 450 },
+  { day: 26, income: 680, expense: 440 },
+  { day: 27, income: 690, expense: 430 },
+  { day: 28, income: 670, expense: 420 },
+  { day: 29, income: 710, expense: 460 },
+  { day: 30, income: 730, expense: 470 },
 ];
 
 const monthlyIncomesData = [
@@ -40,6 +58,24 @@ const monthlyIncomesData = [
   { day: 10, income: 530 },
   { day: 11, income: 600 },
   { day: 12, income: 560 },
+  { day: 13, income: 540 },
+  { day: 14, income: 580 },
+  { day: 15, income: 610 },
+  { day: 16, income: 650 },
+  { day: 17, income: 620 },
+  { day: 18, income: 630 },
+  { day: 19, income: 640 },
+  { day: 20, income: 600 },
+  { day: 21, income: 620 },
+  { day: 22, income: 660 },
+  { day: 23, income: 650 },
+  { day: 24, income: 630 },
+  { day: 25, income: 700 },
+  { day: 26, income: 680 },
+  { day: 27, income: 690 },
+  { day: 28, income: 670 },
+  { day: 29, income: 710 },
+  { day: 30, income: 730 },
 ];
 
 const monthlyExpensesData = [
@@ -55,6 +91,24 @@ const monthlyExpensesData = [
   { day: 10, expense: 350 },
   { day: 11, expense: 370 },
   { day: 12, expense: 340 },
+  { day: 13, expense: 330 },
+  { day: 14, expense: 360 },
+  { day: 15, expense: 380 },
+  { day: 16, expense: 400 },
+  { day: 17, expense: 390 },
+  { day: 18, expense: 410 },
+  { day: 19, expense: 400 },
+  { day: 20, expense: 380 },
+  { day: 21, expense: 390 },
+  { day: 22, expense: 420 },
+  { day: 23, expense: 410 },
+  { day: 24, expense: 400 },
+  { day: 25, expense: 450 },
+  { day: 26, expense: 440 },
+  { day: 27, expense: 430 },
+  { day: 28, expense: 420 },
+  { day: 29, expense: 460 },
+  { day: 30, expense: 470 },
 ];
 
 const pieChartData = [
@@ -65,9 +119,10 @@ const pieChartData = [
   { name: 'Bills & Utilities', value: 950, color: '#ec4899', icon: '💡' },
 ];
 
-// --- ТУЛТИПЫ И КАСТОМНЫЕ ЭЛЕМЕНТЫ (без изменений) ---
+// --- ТУЛТИПЫ И КАСТОМНЫЕ ЭЛЕМЕНТЫ ---
 
-const CustomLineTooltip = ({ active, payload }) => {
+// FIX 2: Added types for 'active' and 'payload'
+const CustomLineTooltip = ({ active, payload }: { active?: boolean; payload?: any[] }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     const hasIncome = data.income !== undefined;
@@ -78,7 +133,8 @@ const CustomLineTooltip = ({ active, payload }) => {
         <p className="font-bold text-gray-800 dark:text-white mb-3 text-base">
           Day {data.day}
         </p>
-        {payload.map((entry, index) => (
+        {/* FIX 3: Added types for 'entry' and 'index' */}
+        {payload.map((entry: any, index: number) => (
           <div key={index} className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <div
@@ -120,7 +176,8 @@ const CustomLineTooltip = ({ active, payload }) => {
   return null;
 };
 
-const CustomDot = (props) => {
+// FIX 4: Added type for 'props'
+const CustomDot = (props: any) => {
   const { cx, cy, stroke } = props;
 
   return (
@@ -146,14 +203,16 @@ const CustomDot = (props) => {
   );
 };
 
-// --- ОСНОВНОЙ КОМПОНЕНТ (с изменениями) ---
+// --- ОСНОВНОЙ КОМПОНENT ---
 const ModernCharts = ({
   type,
 }: {
   type: 'dashboard' | 'incomes' | 'expenses';
 }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [centerLabel, setCenterLabel] = useState({
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  
+  // FIX 5: Added 'percentage' to the state type
+  const [centerLabel, setCenterLabel] = useState<{ name: string; value: string; percentage?: string }>({
     name: 'Total Spending',
     value: '3,420',
   });
@@ -168,8 +227,6 @@ const ModernCharts = ({
           showIncomeArea: true,
           showExpenseArea: false,
           showPieChart: true,
-          // --- ИЗМЕНЕНИЕ №1 ЗДЕСЬ ---
-          // Было lg:col-span-3. Ставим 2, чтобы рядом поместился PieChart (которому нужна 1 колонка)
           areaChartSpan: 'lg:col-span-2',
         };
       case 'expenses':
@@ -196,7 +253,8 @@ const ModernCharts = ({
     }
   }, [type]);
 
-  const onPieEnter = (_, index) => {
+  // FIX 6: Added types for '_' and 'index'
+  const onPieEnter = (_: any, index: number) => {
     setActiveIndex(index);
     const item = pieChartData[index];
     const total = pieChartData.reduce((sum, item) => sum + item.value, 0);
@@ -204,7 +262,7 @@ const ModernCharts = ({
     setCenterLabel({
       name: item.name,
       value: `$${item.value}`,
-      percentage: `${percentage}%`,
+      percentage: `${percentage}%`, // This line is now valid
     });
   };
 
@@ -215,7 +273,6 @@ const ModernCharts = ({
   };
 
   return (
-    // --- ИЗМЕНЕНИЕ №2 ЗДЕСЬ: Убран 'min-h-screen' ---
     <div className="from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -388,6 +445,7 @@ const ModernCharts = ({
                     <p className="text-2xl font-bold text-gray-800 dark:text-white">
                       {centerLabel.value}
                     </p>
+                    {/* This conditional logic is now valid */}
                     {centerLabel.percentage && (
                       <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
                         {centerLabel.percentage}
