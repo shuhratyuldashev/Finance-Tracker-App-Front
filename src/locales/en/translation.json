@@ -41,5 +41,13 @@
     "expense_chart_subtitle": "Monthly Expense Trend",
     "compare_chart_title": "Income vs Expense Overview",
     "compare_chart_subtitle": "Monthly Balance Comparison"
+  },
+  "forgot_password": {
+    "title": "Forgot Password",
+    "description": "Enter your email to reset your password",
+    "email_label": "Email",
+    "button_submit": "Reset Password",
+    "have_account_part1": "Already have an account? - ",
+    "have_account_part2": "Login"
   }
 }

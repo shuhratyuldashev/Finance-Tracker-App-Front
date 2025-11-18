@@ -41,5 +41,13 @@
     "expense_chart_subtitle": "Тенденция ежемесячных расходов",
     "compare_chart_title": "Обзор доходов и расходов",
     "compare_chart_subtitle": "Ежемесячное сравнение баланса"
+  },
+  "forgot_password": {
+    "title": "Восстановление пароля",
+    "description": "Введите ваш email, чтобы восстановить пароль",
+    "email_label": "Электронная почта",
+    "button_submit": "Восстановить",
+    "have_account_part1": "Уже есть аккаунт? - ",
+    "have_account_part2": "Войдите"
   }
 }

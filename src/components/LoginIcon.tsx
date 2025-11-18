@@ -3,12 +3,14 @@ import { LogIn } from "lucide-react";
 
 interface LoginButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick: any;
+  disabled?: boolean;
 }
 
-const LoginButton: React.FC<LoginButtonProps> = ({ children, onClick }) => {
+const LoginButton: React.FC<LoginButtonProps> = ({ children, onClick, disabled }) => {
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
       className="flex items-center justify-center w-full px-4 py-3 text-white font-semibold rounded-lg bg-blue-500 hover:bg-blue-600 transition duration-300 shadow-md"
     >

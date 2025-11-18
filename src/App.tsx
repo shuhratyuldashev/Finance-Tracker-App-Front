@@ -3,6 +3,7 @@ import DashboardPage from "./pages/HomePage/HomePage";
 import { Route, Routes } from "react-router-dom";
 import ProfileSettings from "./pages/ProfilePage/ProfilePage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/profile" element={<ProfileSettings />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
     </Routes>
   );
 };

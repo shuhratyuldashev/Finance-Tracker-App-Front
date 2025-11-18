@@ -26,7 +26,7 @@ const LanguageSelect: React.FC = () => {
       {/* Кнопка Select */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center px-4 py-2 bg-white dark:bg-gray-700 bg-opacity-30 backdrop-blur-sm rounded-full font-bold transition duration-200 hover:bg-opacity-50 focus:outline-none"
+        className="flex items-center dark:text-white justify-center px-4 py-2 bg-white dark:bg-gray-700 bg-opacity-30 backdrop-blur-sm rounded-full font-bold transition duration-200 hover:bg-opacity-50 focus:outline-none"
       >
         {t("language")}{" "}
         {/* <-- Отображаем "Ру" или "Eng" в зависимости от текущего языка */}
