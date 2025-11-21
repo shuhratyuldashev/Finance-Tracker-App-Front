@@ -49,5 +49,30 @@
     "button_submit": "Reset Password",
     "have_account_part1": "Already have an account? - ",
     "have_account_part2": "Login"
+  },
+  "profile": {
+    "title": "Profile",
+    "avatar": {
+      "title": "Avatar",
+      "description": "Formats: JPEG, PNG, WEBP, GIF. Max. size: 10 MB."
+    },
+    "login": "Your Login",
+    "account": {
+      "title": "Account",
+      "email_title": "Email",
+      "email_description": "Your account to the address",
+      "passowrd_title": "Password",
+      "passowrd_description": "Your password is the key to your account. Don't share it with anyone. If necessary, you can change it here for increased security."
+    },
+    "system": {
+      "title": "System",
+      "language_title": "Language",
+      "language_description": "Select the interface language for ease of use."
+    },
+    "actions": {
+      "title": "Actions",
+      "logout": "Logout",
+      "logout_description": "Log out to sign out of your account on this device."
+    }
   }
 }

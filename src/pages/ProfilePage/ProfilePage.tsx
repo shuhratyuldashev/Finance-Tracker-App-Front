@@ -4,8 +4,12 @@ import Sidebar from "../../components/Dashboard/Sidebar";
 import { useTheme } from "../../context/ThemeContext";
 import LanguageSelect from "../../components/LanguageSelect";
 import { useUserAccountModals } from "../../components/User/UserAccountModals";
+import { useTranslation } from "react-i18next";
+
+
 const ProfileSettings = () => {
   const { darkMode } = useTheme();
+  const { t } = useTranslation();
   const {
     openModal,
     ChangeEmailModal,
@@ -35,7 +39,7 @@ const ProfileSettings = () => {
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white">
-              Профиль
+              {t('profile.title')}
             </h1>
             <div className="flex gap-2">
               <LanguageSelect />
@@ -50,10 +54,10 @@ const ProfileSettings = () => {
               </div>
               <div>
                 <h3 className="font-semibold mb-1 text-gray-900 dark:text-white">
-                  Аватарка
+                  {t('profile.avatar.title')}
                 </h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Форматы: JPEG, PNG, WEBP, GIF. Макс. размер: 10 МБ.
+                  {t('profile.avatar.description')}
                 </p>
               </div>
             </div>
@@ -62,7 +66,7 @@ const ProfileSettings = () => {
           {/* Login Section */}
           <div className="rounded-2xl p-6 mb-6 bg-white dark:bg-gray-800 transition-colors">
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
-              Ваш логин
+              {t('profile.login')}
             </h3>
             <div className="flex items-center justify-between p-4 rounded-xl bg-blue-50 dark:bg-gray-900/50 transition-colors">
               <span className="text-blue-500 font-medium">John Doe</span>
@@ -75,7 +79,7 @@ const ProfileSettings = () => {
           {/* Account Section */}
           <div className="rounded-2xl p-6 mb-6 bg-white dark:bg-gray-800 transition-colors">
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
-              Аккаунт
+              {t('profile.account.title')}
             </h3>
 
             {/* Email */}
@@ -109,10 +113,10 @@ const ProfileSettings = () => {
               </div>
               <div className="flex-1">
                 <h4 className="font-medium mb-1 text-gray-900 dark:text-white">
-                  Почта
+                  {t('profile.account.email_title')}
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Ваша учетная запись к адресу{" "}
+                  {t('profile.account.email_description')}{" "}
                   <span className="text-blue-500">JohnDoe82@gmail.com</span>
                 </p>
               </div>
@@ -146,12 +150,10 @@ const ProfileSettings = () => {
               </div>
               <div className="flex-1">
                 <h4 className="font-medium mb-1 text-gray-900 dark:text-white">
-                  Пароль
+                  {t('profile.account.passowrd_title')}
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Пароль — ключ к вашей учетной записи. Никому его не сообщайте.
-                  При необходимости вы можете изменить его здесь для повышения
-                  безопасности.
+                  {t('profile.account.passowrd_description')}
                 </p>
               </div>
               <button
@@ -166,7 +168,7 @@ const ProfileSettings = () => {
           {/* System Section */}
           <div className="rounded-2xl p-6 mb-6 bg-white dark:bg-gray-800 transition-colors">
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
-              Система
+              {t('profile.system.title')}
             </h3>
 
             {/* Language */}
@@ -176,10 +178,10 @@ const ProfileSettings = () => {
               </div>
               <div className="flex-1">
                 <h4 className="font-medium mb-1 text-gray-900 dark:text-white">
-                  Язык
+                  {t('profile.system.language_title')}
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Выберите язык интерфейса для удобства использования.
+                  {t('profile.system.language_description')}
                 </p>
               </div>
               <div className="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-100 text-blue-500 dark:bg-gray-900/50 dark:text-blue-400 transition-colors">
@@ -191,23 +193,23 @@ const ProfileSettings = () => {
           {/* Actions Section */}
           <div className="rounded-2xl p-6 border-2 bg-white border-red-200 dark:bg-gray-800/50 dark:border-red-900/30 transition-colors">
             <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">
-              Действия
+              {t('profile.actions.title')}
             </h3>
 
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
                 <h4 className="font-medium mb-1 text-gray-900 dark:text-white">
-                  Выход
+                  {t('profile.actions.logout')}
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Завершите сеанс, чтобы выйти из аккаунта на этом устройстве.
+                  {t('profile.actions.logout_description')}
                 </p>
               </div>
               <button
                 onClick={() => openModal("logout")}
                 className="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-3 rounded-xl transition-colors w-full md:w-auto"
               >
-                Выйти
+                {t('profile.actions.logout')}
               </button>
             </div>
           </div>

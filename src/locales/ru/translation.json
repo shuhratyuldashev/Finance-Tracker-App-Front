@@ -49,5 +49,30 @@
     "button_submit": "Восстановить",
     "have_account_part1": "Уже есть аккаунт? - ",
     "have_account_part2": "Войдите"
+  },
+  "profile": {
+    "title": "Профиль",
+    "avatar": {
+      "title": "Аватарка",
+      "description": "Формат: JPEG, PNG, WEBP, GIF. Максимальный вес: 10 MB."
+    },
+    "login": "Ваш логин",
+    "account": {
+      "title": "Аккаунт",
+      "email_title": "Почта",
+      "email_description": "Ваш адрес электронной почты",
+      "passowrd_title": "Пароль",
+      "passowrd_description": "Ваш пароль - ключ к вашему аккаунту. Не сообщайте его никому. При необходимости вы можете изменить его здесь для повышения безопасности."
+    },
+    "system": {
+      "title": "Система",
+      "language_title": "Язык",
+      "language_description": "Выберите язык интерфейса для удобства использования."
+    },
+    "actions": {
+      "title": "Действия",
+      "logout": "Выйти",
+      "logout_description": "Выйти из аккаунта на этом устройстве."
+    }
   }
 }

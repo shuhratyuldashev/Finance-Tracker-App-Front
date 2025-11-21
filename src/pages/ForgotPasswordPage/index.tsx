@@ -1,17 +1,17 @@
 // src/pages/ForgotPasswordPage.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InputField from "../../components/InputField";
 import LoginButton from "../../components/LoginIcon"; // Предполагаю, что это кнопка
 import LanguageSelect from "../../components/LanguageSelect";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Типы для шагов
 type Step = "EMAIL" | "CODE" | "NEW_PASSWORD" | "SUCCESS";
 
 const ForgotPasswordPage: React.FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
 
   // --- СОСТОЯНИЕ (STATE) ---
   const [currentStep, setCurrentStep] = useState<Step>("EMAIL"); // Начинаем с Email, или поставьте 'CODE' для теста
